@@ -1,0 +1,79 @@
+# Pro cricket team Auction and score Predictor
+
+# Step 1= The Team Owner's Budget and Base Team Setup
+import random
+print("*** IPL TEAM AUCTION 2026***")
+team_name = input("Enter Team Name: ").title()
+print()
+print("*** THREE RESERVE PLAYER OF THE TEAM ***")
+print()
+p1 = input("Enter Player 1 Name: ").capitalize()
+b1 = int(input(f"Enter Bid Price For {p1}: "))
+r1 = random.randint(0,200)
+print()
+p2 = input("Enter Player 2 Name: ").capitalize()
+b2 = int(input(f"Enter Bid Price For {p2}: "))
+r2 = random.randint(0,200)
+print()
+p3 = input("Enter Player 3 Name: ").capitalize()
+b3 = int(input(f"Enter Bid Price For {p3}: "))
+r3 = random.randint(0,200)
+print()
+print(f'***** TEAM REGISTERED: {team_name} *****')
+budget = 5000000
+total_spent = (b1 + b2 + b3)
+remaining_purse = (budget - total_spent)
+print(f"Total Spent: {total_spent}")
+print(f"Remaining Budget: {remaining_purse}")
+if total_spent > budget:
+    print("Please Try Again Your Choosen Players Are Too Expensive.")
+else:
+    print("Status: Budget is safe! Ready for the match.")
+
+# Step 2 = The Squad Storage(List and Dictionary Integration)
+
+squad = []
+player_data = {}
+squad.append(p1)
+squad.append(p2)
+squad.append(p3)
+player_data[p1] = b1
+player_data[p2] = b2
+player_data[p3] = b3
+print()
+serch = input("Which player's bid price do you want to know?: ").capitalize()
+print(f"Result: {serch} was bought for {player_data[serch]}")
+print()
+print("***** FULL SQUAD LIST ****")
+print(squad)
+print()
+
+# Step 3 = The Match Day Simulation(Random Module and Math)
+total_team_score = (r1 + r2 + r3)
+opponent_score = random.randint(0,300)
+print("***** MATCH STARTING *****")
+print(f'{p1} scored: {r1}')
+print(f"{p2} scored: {r2}")
+print(f"{p3} scored: {r3}")
+print(f"Total Team Scored: {total_team_score}")
+print(f"Opponent Team Scored: {opponent_score}")
+if total_team_score > opponent_score:
+    # Step 4 = The Winner Ceremony(Nested Logic and Dict Looping)
+    # Dictonary for runs
+    player_runs = {p1:r1, p2:r2, p3:r3}
+    orange_cap = max(player_runs.values())
+    print("CONGRATS! YOU WON THE MATCH.")
+    print("***** AWARD CEREMONEY *****")
+    #orange cap loop
+    for name, runs in player_runs.items():
+        if runs == orange_cap:
+            print(f"Orange Cap:{name} ({runs} Runs)")
+        # Value Buy(Smart Purchase)
+        if runs > 50 and player_data[name] < 1500000:
+            print(f"Value Buy: {name} (Price: {player_data[name]})")    
+
+
+
+else:
+    print(f"Better luck next time! {team_name} lost by {300 - total_team_score} runs. ")    
+
