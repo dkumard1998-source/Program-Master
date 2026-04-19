@@ -1,0 +1,58 @@
+#Smart Social Media Security and Post Manager
+
+#Step 1 the account creation and password shield
+#Step 2 the security list and content filter
+blocked_terms = ["admin", "password", "hack", "12345"]
+abuse_words = ["kutta", "kamina", "rascal", "hate", "stupid",]
+post_history = []
+print("----- SECURE POST MANAGER -----")
+while True:
+    username = input("Enter Username: ")
+    password = input("Enter a New Password: ")
+    if password in blocked_terms:
+        print("\"Error: Use of forbidden words!")
+        continue
+    elif len(password) < 8:
+        print("\"Too Short!")
+        continue
+    else:
+        print(f'Account Created! Welcome, {username}')
+        break
+print()
+post = input(f"Whats on your mind {username}: ").lower()
+for i in abuse_words:
+    post = post.replace(i, "***")
+post_history.append(post)    
+while True:
+    asking = input("Do you want to post more(Yes/No): ").title()
+    if asking == "No":
+        break
+    more_post = input("Comment more here: ").lower()
+    for i in abuse_words:
+        repost = more_post.replace(i, "***")
+    post_history.append(more_post)
+    print(post_history) 
+#post Reach and policy login
+print()
+followers = int(input("Total Followers: "))
+reach = followers * 0.1
+#shadow ban check
+print("----- POST ANALYTICS -----")
+print(f"Base Reach: {reach}")
+if "***" in post:
+    reach = followers * 0.05
+    print("Shadowbanned! Policy violation detected.")
+    print(f"Final Reach: {reach}")
+else:
+    print(f"Final Reach: {reach}")            
+
+
+            
+
+
+    
+    
+          
+
+
+    
