@@ -1,0 +1,59 @@
+# --- ATM Machine Setup ---
+# Store user details (Name, PIN, and Balance) in a dictionary
+user = {"Name": "Kavya", "Pin": 12345, "Balance": 10000}
+# Create a 'balance' variable to easily track money during the session
+balance = user["Balance"]
+
+print("------ WELCOME TO PYTHON ATM ------")
+
+# --- Step 1: Password Check ---
+while True:
+    # Ask the user for their secret PIN
+    pin = int(input("Enter Your Pin: "))
+
+    # If the PIN is correct, grant access
+    if pin == user["Pin"]:
+        print(f"Hello {user['Name']}! Welcome back.")
+
+        # --- Step 2: Transaction Menu ---
+        while True:
+            # Show the user their options
+            print("\n1. Check Balance\n2. Deposit Money\n3. Withdraw Money\n4. Exit")
+            choice = input("What do you want to do? ").strip()
+
+            # Option 1: Show current balance
+            if choice == "1":
+                print(f"Your total balance is: {balance}")
+
+            # Option 2: Add money to the account
+            elif choice == "2":
+                amount = float(input("Enter amount to deposit: "))
+                balance += amount
+                # Save the new balance back into the dictionary
+                user["Balance"] = balance
+                print(f"Great! Your new balance is {balance}.")
+
+            # Option 3: Remove money from the account
+            elif choice == "3":
+                amount = float(input("Enter amount to withdraw: "))
+                # Check if there is enough money before withdrawing
+                if amount <= balance:
+                    balance -= amount
+                    user["Balance"] = balance
+                    print(f"Withdrawal successful! Remaining balance: {balance}")
+                else:
+                    print("Error: Not enough money in your account.")
+
+            # Option 4: Exit the menu
+            elif choice == "4":
+                print(f"Final balance saved to records: {user['Balance']}")
+                print("Goodbye! Thanks to banking with Us.")
+                break
+
+            # Handle invalid choices
+            else:
+                print("Invalid input! Please enter 1, 2, 3, or 4.")
+        break # End the program after logout
+    else:
+        # If the PIN is wrong
+        print("Incorrect PIN! Please try again.")
