@@ -1,0 +1,72 @@
+import random  # This helps us pick a random item from a list
+import time    # This helps us wait for a few seconds
+
+# This is our starting list of favorite anime
+fav_anime = ["Fullmetal Alchemist: Brotherhood", "Steins:Gate", "Bleach: Thousand-Year Blood War",
+    "Gintama°", "Kaguya-sama: Love is War - Ultra Romantic", "Hunter x Hunter (2011)",
+    "Ginga Eiyuu Densetsu", "Fruits Basket: The Final", "Gintama'", "Clannad: After Story"]
+
+# We count how many anime we have at the start
+initial_count = len(fav_anime)
+
+print("***** AI ANIME PICKER *****")
+
+# This function shows the list on the screen in a pretty way
+def display_list(title, anime_list):
+    print("\n" + "="*30)
+    print("    " + title)
+    print("="*30)
+
+    # We go through the list one by one and print each anime with a number
+    for i in range(len(anime_list)):
+        print("[" + str(i + 1) + "] " + anime_list[i])
+
+    print("="*30)
+    print("Total Anime:", len(anime_list))
+    print()
+
+# Call the function to show our initial list
+display_list("MY ANIME LIST", fav_anime)
+
+# This loop keeps asking the user until they say 'No'
+while True:
+    choice = input("Do you want to add an anime to your list (Yes/No): ").strip().lower()
+
+    if choice == "yes":
+        new_anime = input("Enter the name of the anime: ").strip()
+
+        # We check if the name is already in our list (ignoring capital letters)
+        already_exists = False
+        for anime in fav_anime:
+            if new_anime.lower() == anime.lower():
+                already_exists = True
+
+        if already_exists:
+            print("⚠️ Warning: '" + new_anime + "' is already in your list!")
+        else:
+            # If it's new, we add it to our list
+            fav_anime.append(new_anime)
+            print("✅ '" + new_anime + "' added successfully!")
+    elif choice == "no":
+        # If the user says 'no', we stop asking
+        break
+    else:
+        print("❌ Invalid input! Please type 'Yes' or 'No'.")
+
+# We only show the list again if the user actually added a new anime
+if len(fav_anime) > initial_count:
+    display_list("UPDATED ANIME LIST", fav_anime)
+
+# This part makes the AI look like it's thinking
+print("\n🤖 Okay let AI think...")
+time.sleep(random.randint(2,4)) # Wait for a random time
+print("Searching....")
+time.sleep(random.randint(2,4)) # Wait again
+print("Analyzing your mood.... ")
+time.sleep(random.randint(2,4)) # Wait one last time
+
+# The AI picks one random anime from the final list
+recommendation = random.choice(fav_anime)
+print("\n✨ AI suggests you watch: '" + recommendation + "' ✨")
+
+print("\nThank you!")
