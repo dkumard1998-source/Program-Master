@@ -1,0 +1,38 @@
+# Program Name: Party Guest Manager
+
+# Initialize the list of invited guests
+guest_list = ["Tanya Singh", "Kavya", "Nidhi","Boby Shakya","Ritik","Kamalash"]
+
+# Get the guest's name as input and format it to title case
+name = input("Enter Your Name: ").title()
+
+# Set the number of allowed password attempts
+attempts = 3
+
+# Check if the entered name is in the guest list
+if name in guest_list:
+    # If the guest is invited, proceed to password verification
+    print(f"Welcome {name}.\n For second security verification\n you have to enter your\n correct password below.")
+    
+    # Loop for password attempts
+    while True:
+        # Get the password input
+        password = int(input("Enter Your Password: "))
+        
+        # Check if the password is correct
+        if password == 1234:
+            print(f"Welcome to the party {name}.")
+            break # Exit the password loop if correct
+        else:
+            # Decrement attempts for wrong password
+            attempts -= 1
+            if attempts == 0:
+                print("Your Profile locked for one hour.")
+                break # Exit the password loop if attempts run out
+            else:
+                print("Wrong Password, Try again.")
+                print(f"You only have {attempts} attempts left.")
+
+else:
+    # If the guest is not invited, display a message
+    print(" Sorry! Your not invited in the party. ")
