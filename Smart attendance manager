@@ -1,0 +1,38 @@
+# Program Name: Smart Attendance Manager
+# Description: This program helps manage student attendance by prompting the user for each student's presence.
+# It then categorizes students into 'present' and 'absent' lists and displays a summary.
+
+# List of all students in the class
+students = ["Deepak", "Kavya", "Amit", "Sonu", "Monu", "Tanya", "Kavita", "Sakshi", "Monika", "Trisha", "Navya"]
+
+# Initialize empty lists to store present and absent students
+present_student = []
+absent_student = []
+
+# Loop through each student to record their attendance
+for student in students:
+    # Loop until a valid input (P or A) is received
+    while True:
+        # Prompt the user for attendance input (P for Present, A for Absent)
+        taking_attandence = input(f"Is {student} Present(P/A): ").title() # .title() converts input to Title Case (e.g., 'p' -> 'P')
+        
+        # Check if the student is present
+        if taking_attandence == "P":
+            present_student.append(student) # Add student to the present list
+            break # Exit the inner loop for the current student
+        # Check if the student is absent
+        elif taking_attandence == "A":
+            absent_student.append(student) # Add student to the absent list
+            break # Exit the inner loop for the current student
+        # Handle invalid input
+        else:
+            print("Wrong Input,Please Press P for Present or A for Absent.")
+            continue # Continue the inner loop to ask again
+
+# Print a summary of the attendance
+print("\nAttendance Summary:")
+print(f"Total Present Students {len(present_student)}: {present_student}")
+print()
+print(f"Total Absent Students {len(absent_student)}: {absent_student}")
+print()
+print(f"Total Students In Class {len(students)}: {students}")
